@@ -17,3 +17,4 @@
 - HTTPs
 - Tree Shaking - removed unused code
 - Different dev and prod build
+# Eats-24 🎉
