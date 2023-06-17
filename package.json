@@ -1,0 +1,33 @@
+{
+  "name": "foodapp",
+  "version": "1.0.0",
+  "description": "This is Eats 24 Food App",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepaksharma13/Eats-24.git"
+  },
+  "keywords": [
+    "Food",
+    "App",
+    "Eats",
+    "24"
+  ],
+  "author": "Deepak Sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deepaksharma13/Eats-24/issues"
+  },
+  "homepage": "https://github.com/deepaksharma13/Eats-24#readme",
+  "devDependencies": {
+    "parcel": "^2.9.2",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
