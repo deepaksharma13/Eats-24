@@ -1,17 +1,25 @@
-import React from "react"
+import React, { Component } from "react";
 import ReactDOM from "react-dom/client";
 
+// We can call Component inside a Component.
+// Can call a react element inside a Component.
+// can call a component inside a react element.
+// can call element inside a element.
 
-const head = React.createElement("div",{id:"head", abc:"react"},[
-    React.createElement("div",{id:"child", child:"chilsn"},[
-        React.createElement("h1",{id:"head1", abc:"react"},"Hello world by h1" ),
-        React.createElement("h2",{id:"head2", abc:"react"},"Hello world by h2" )
-    ]),
-    React.createElement("div",{id:"child", child:"chilsn"},[
-        React.createElement("h1",{id:"head1", abc:"react"},"Hello world by h1" ),
-        React.createElement("h2",{id:"head2", abc:"react"},"Hello world by h2" )
-    ])
-]);
+const Title = () => <h1>This is a Title</h1>;
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(head);
+const title = <h1>This is title element
+    <Title />
+</h1>
+
+
+const HeadingJsx = () => {
+ return <div>
+    <Title />
+    {title}
+    <h1>This is a heading coming from JSX</h1>
+  </div>;
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<HeadingJsx />);
