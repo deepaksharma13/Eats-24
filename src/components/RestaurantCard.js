@@ -9,7 +9,7 @@ const RestaurantCard = ({resData}) => {
       <div className="Card">
         <img src={CDN_URL + resData.data.cloudinaryImageId}   alt="imgCard"/>
         <h2>{name}</h2>
-        <p>{cuisines.join(',')}</p>
+        <p>{cuisines.join(' , ')}</p>
         <p>{slaString}</p>
         <p>{avgRating}</p>
         <p>₹{costForTwo/100} FOR TWO</p>

@@ -1,83 +1,38 @@
 import RestaurantCard from "./RestaurantCard";
-import restObj from "../utils/mockdata";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Shimmer from './Shimmer'
 
 const Body = () => {
 
-  const [listOfRestaurants, setListOfRestaurants] = useState(restObj)
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
-    // let listOfRestaurantsjs = [{
-    //   data: {
-    //     type: "F",
-    //     id: "7",
-    //     name: "Pizza Pasta Wala",
-    //     avgRating: '3.8',
-    //     uuid: "cae43d3e-0437-48de-8ffa-def3a5ed3937",
-    //     city: "81",
-    //     area: "Sector 15_FBD",
-    //     totalRatingsString: "Too Few Ratings",
-    //     cloudinaryImageId: "4371ea20a925a4be398232931ff0e320",
-    //     cuisines: [
-    //       "Pizzas",
-    //       "Pastas",
-    //       "Burgers",
-    //       "Fast Food",
-    //       "Chinese",
-    //       "Cafe",
-    //       "Beverages",
-    //     ],
-        
-    //   },
-    // },
-    // {
-    //   data: {
-    //     type: "F",
-    //     id: "71",
-    //     name: "Pizza Wala",
-    //     avgRating: '4.8',
-    //     uuid: "cae43d3e-0437-48de-8ffa-def3a5ed3937",
-    //     city: "81",
-    //     area: "Sector 15_FBD",
-    //     totalRatingsString: "Too Few Ratings",
-    //     cloudinaryImageId: "4371ea20a925a4be398232931ff0e320",
-    //     cuisines: [
-    //       "Pizzas",
-    //       "Pastas",
-    //       "Burgers",
-    //       "Fast Food",
-    //       "Chinese",
-    //       "Cafe",
-    //       "Beverages",
-    //     ]
-    //   },
-    // },
-    // {
-    //   data: {
-    //     type: "F",
-    //     id: "711",
-    //     name: "Pizza H",
-    //     avgRating: '4.1',
-    //     uuid: "cae43d3e-0437-48de-8ffa-def3a5ed3937",
-    //     city: "81",
-    //     area: "Sector 15_FBD",
-    //     totalRatingsString: "Too Few Ratings",
-    //     cloudinaryImageId: "4371ea20a925a4be398232931ff0e320",
-    //     cuisines: [
-    //       "Pizzas",
-    //       "Pastas",
-    //       "Burgers",
-    //       "Fast Food",
-    //       "Chinese",
-    //       "Cafe",
-    //       "Beverages",
-    //     ]
-    //   },
-    // }]
+  const [searchText, setSearchText] = useState("")
 
+  useEffect(()=>{
+    fetchData()
+  },[])
 
-  return (
+  const fetchData = async()=> {
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.3222028&lng=77.3410569&page_type=DESKTOP_WEB_LISTING")
+         const json = await data.json();
+         console.log(json)
+         setListOfRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+         setFilteredRestaurant(json?.data?.cards[2]?.data?.data?.cards)   
+  }
+
+  // conditional rendering or using ternary opratory
+  return listOfRestaurants.length === 0 ? <Shimmer/> : (
     <div className="body-sec">
       <div className="searchSec">
+      <div className="search">
+        <input type="text" className="search-box" value={searchText} onChange={(e)=> setSearchText(e.target.value)} />
+        <button onClick={()=>{
+          const filteredRestaurant = listOfRestaurants.filter((res)=>res.data.name.toLowerCase().includes(searchText.toLowerCase()))
+          setFilteredRestaurant(filteredRestaurant)
+        }}>Search</button>
+       </div>
+       <div>
         <button
           type="button"
           onClick={() => {
@@ -86,16 +41,17 @@ const Body = () => {
             console.log(listOfRestaurants)
           }}
         >
-          Top Rated restaurant{" "}
+          Top Rated restaurant
         </button>
+        </div>
       </div>
       <div className="Card-container">
-        {listOfRestaurants.map((restaurant) => (
+        {filteredRestaurant.map((restaurant) => (
           <RestaurantCard key={restaurant.data.id} resData={restaurant} />
         ))}
       </div>
     </div>
-  );
+  )
 };
 
 export default Body;
