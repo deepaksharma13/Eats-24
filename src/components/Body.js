@@ -19,12 +19,7 @@ const Body = () => {
     );
     const json = await data.json();
     // Optional Chaining
-    const restaurantData = await (json?.data?.cards[2]?.card?.card?.gridElements
-      ?.infoWithStyle.restaurants ||
-      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
-        .restaurants ||
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        .restaurants ||
+    const restaurantData = await (
       json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
         .restaurants);
     setListOfRestaurants(restaurantData);
@@ -60,7 +55,6 @@ const Body = () => {
           onClick={() => {
             const filterList = listOfRestaurants.filter(res => res.info.avgRating > 4);
             setListOfRestaurants(filterList)
-            console.log(listOfRestaurants)
           }}
         >
           Top Rated restaurant
