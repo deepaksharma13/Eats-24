@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus"
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -15,7 +16,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0759837&lng=72.8776559&page_type=DESKTOP_WEB_LISTING"
+      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0759837&lng=72.8776559&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     // Optional Chaining
@@ -26,6 +27,16 @@ const Body = () => {
     setFilteredRestaurant(restaurantData);
   };
   // conditional rendering or using ternary opratory
+
+    
+  const isOnline = useOnlineStatus();
+
+  if (isOnline === false)
+    return <h1>Internet Is not working. Please check your connections</h1>;
+
+
+
+
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (

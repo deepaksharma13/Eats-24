@@ -17,4 +17,12 @@
 - HTTPs
 - Tree Shaking - removed unused code
 - Different dev and prod build
+
+Things to make App Fast
+- chunking
+- code Splitting
+- Dynamic Bundling 
+- lazy Loading
+- on demand loading
+
 # Eats-24 🎉
