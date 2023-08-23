@@ -6,23 +6,23 @@ const Header = () => {
   const isOnline = useOnlineStatus();
 
   return (
-    <div className="headerMain">
-      <Link to="/" className="LogoOuter">
+    <div className="flex justify-between items-center	p-4 bg-gray-100 shadow-md	">
+      <Link to="/" className="w-40">
         <img src={LOGO_URL} alt="logo" />
       </Link>
       <div className="list-items">
-        <ul>
-          <li>Online : {isOnline ? "🍏" : "🍎"}</li>
-          <li>
+        <ul className="flex">
+          <li className="pr-2">Online : {isOnline ? "🍏" : "🍎"}</li>
+          <li className="pr-2">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="pr-2">
             <Link to="/about">About</Link>
           </li>
-          <li>
+          <li className="pr-2">
             <Link to="/contact">Contact</Link>
           </li>
-          <li>
+          <li className="pr-2">
             <Link to="SwiggyMart"> SwiggyMart</Link>
           </li>
           <li>Cart</li>
