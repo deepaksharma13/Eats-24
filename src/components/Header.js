@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const isOnline = useOnlineStatus();
+
+  const { loggedInUser } = useContext(UserContext);
 
   return (
     <div className="flex justify-between items-center	p-4 bg-gray-100 shadow-md	">
@@ -25,7 +29,10 @@ const Header = () => {
           <li className="pr-2">
             <Link to="SwiggyMart"> SwiggyMart</Link>
           </li>
-          <li>Cart</li>
+          <li className="pr-2">
+            <Link to="/Cart">Cart</Link>
+            </li>
+          <li>{loggedInUser}</li>
         </ul>
       </div>
     </div>
