@@ -7,10 +7,10 @@ const ItemList = ({ items }) => {
 
   const dispatch = useDispatch();
 
-  const handleAddItem = (item)=> {
-                   dispatch(addItem(item))
-  }
-
+  const handleAddItem = (item) => {
+    // Dispatch and action
+    dispatch(addItem(item));
+  };
 
   return (
     <>
@@ -33,8 +33,15 @@ const ItemList = ({ items }) => {
               <p className="text-xs">{item.card.info.description}</p>
             </div>
             <div className="w-3/12 relative">
-             <div><img src={CDN_URL + item.card.info.imageId} /></div> 
-              <button className="p-2 bg-black text-white shadow-lg absolute m-auto -bottom-2 left-14 rounded-md" onClick={() => handleAddItem(item)}>Add +</button>
+              <div>
+                <img src={CDN_URL + item.card.info.imageId} />
+              </div>
+              <button
+                className="p-2 bg-black text-white shadow-lg absolute m-auto -bottom-2 left-14 rounded-md"
+                onClick={() => handleAddItem(item)}
+              >
+                Add +
+              </button>
             </div>
           </div>
         </div>

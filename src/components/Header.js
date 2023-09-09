@@ -3,11 +3,14 @@ import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const isOnline = useOnlineStatus();
 
   const { loggedInUser } = useContext(UserContext);
+  // subscribing to the store using selector
+  const cartItems = useSelector((store)=> store.cart.items)
 
   return (
     <div className="flex justify-between items-center	p-4 bg-gray-100 shadow-md	">
@@ -26,11 +29,11 @@ const Header = () => {
           <li className="pr-2">
             <Link to="/contact">Contact</Link>
           </li>
-          <li className="pr-2">
+          <li className="pr-2 ">
             <Link to="SwiggyMart"> SwiggyMart</Link>
           </li>
-          <li className="pr-2">
-            <Link to="/Cart">Cart</Link>
+          <li className="pr-2 font-bold text-md">
+            <Link to="/Cart">Cart ({cartItems.length} : Items)</Link>
             </li>
           <li>{loggedInUser}</li>
         </ul>
