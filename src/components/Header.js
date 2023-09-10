@@ -13,13 +13,13 @@ const Header = () => {
   const cartItems = useSelector((store)=> store.cart.items)
 
   return (
-    <div className="flex justify-between items-center	p-4 bg-gray-100 shadow-md	">
-      <Link to="/" className="w-40">
+    <div className="block justify-between items-center	p-4 bg-gray-100 shadow-md  md:flex">
+      <Link to="/" className="w-40 block">
         <img src={LOGO_URL} alt="logo" />
       </Link>
       <div className="list-items">
-        <ul className="flex">
-          <li className="pr-2">Online : {isOnline ? "🍏" : "🍎"}</li>
+        <ul className="flex justify-center">
+          <li className="pr-2 whitespace-nowrap">Online : {isOnline ? "🍏" : "🍎"}</li>
           <li className="pr-2">
             <Link to="/">Home</Link>
           </li>
@@ -33,9 +33,9 @@ const Header = () => {
             <Link to="SwiggyMart"> SwiggyMart</Link>
           </li>
           <li className="pr-2 font-bold text-md">
-            <Link to="/Cart">Cart ({cartItems.length} : Items)</Link>
+            <Link to="/Cart" className="whitespace-nowrap">Cart ({cartItems.length} : Items)</Link>
             </li>
-          <li>{loggedInUser}</li>
+          <li className="whitespace-nowrap">{loggedInUser}</li>
         </ul>
       </div>
     </div>

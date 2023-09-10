@@ -16,7 +16,7 @@ const Cart = () => {
   return (
     <div className='text-center m-4 p-4'>
         <h1>Cart</h1>
-        <div className='6/12 m-auto'>
+        <div className='w-6/12 m-auto'>
           <button onClick={handleClearCart} className='p-2 m-2 bg-black text-white rounded-lg font-bold'>
             Clear Cart
           </button>
